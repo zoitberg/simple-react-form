@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.Flex-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+}
+
+.Flex-container * {
+
+  margin: 3px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

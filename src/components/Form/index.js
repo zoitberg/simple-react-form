@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../App.css';
 
 class Form extends React.Component {
     constructor(props) {
@@ -7,26 +8,37 @@ class Form extends React.Component {
             firstName: '',
             lastName: '',
             email: '',
-            isAnswerYes: '',
-            isAnswerNo: '',
+            isAnswerTrue: '',
             comment: ''
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
         const target = event.target;
         const name = target.name;
+        const value = target.value;
 
         this.setState({
-            [name]: target.value
+            [name]: value
         });
+    }
+
+    handleSubmit(event) {
+      
+        event.preventDefault();
+        console.log('Form Data:\n');
+        for (const [key, value] of Object.entries(this.state)) {
+            console.log(` ${key}: ${value}`);
+          }
+        
     }
 
     render() {
         return (
-           <form>
+           <form className='Flex-container' onSubmit={this.handleSubmit}>
                <label>
                    First Name: 
                     <input
@@ -58,28 +70,27 @@ class Form extends React.Component {
                 <div>
                     Answer:
                       <input 
-                          name='answer'
+                          name='isAnswerTrue'
                           type='radio'
                           id='yes'
                           value='yes'
-                          checked 
-                          onChange={this.handleInputChange}
+                           onChange={this.handleInputChange}
                       /> 
-                      <label for='yes'>Yes</label> 
+                      <label htmlFor='yes'>Yes</label> 
                       <input 
-                          name='answer'
+                          name='isAnswerTrue'
                           type='radio'
                           id='no'
-                          value='no'
-                          checked 
+                          value='no' 
                           onChange={this.handleInputChange}
                       /> 
-                      <label for='no'>No</label> 
+                      <label htmlFor='no'>No</label> 
                 </div>
                 <label>
                       Comment:
-                      <textarea value={this.state.comment} onChange={this.handleChange} />
-                </label>      
+                      <textarea name='comment' value={this.state.comment} onChange={this.handleInputChange}/>
+                </label>   
+                <input type='submit' value='Submit' />   
             </form>  
         )
     }
