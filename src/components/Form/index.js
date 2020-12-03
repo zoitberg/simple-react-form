@@ -37,30 +37,39 @@ class Form extends React.Component {
     }
 
     render() {
+
+        const alphaRegex = '[A-Za-z]+';
+        const alphaNumRegex = '[A-Za-z0-9_]*';
+
         return (
            <form className='Flex-container' onSubmit={this.handleSubmit}>
                <label>
                    First Name: 
                     <input
+                      required
                       name='firstName'
                       type='text'
                       value={this.state.firstName}
                       onChange={this.handleInputChange}
+                      pattern={alphaRegex}
                        />   
                </label>
                <br />
                <label>
                    Last Name:
                       <input 
+                        required
                         name='lastName'
                         type='text'
                         value={this.state.lastName}
                         onChange={this.handleInputChange}
+                        pattern={alphaRegex}
                       />
                </label>
                <label>
                    Email:
                       <input
+                        required
                         name='email'
                         type='email'
                         value={this.state.email}
@@ -70,17 +79,19 @@ class Form extends React.Component {
                 <div>
                     Answer:
                       <input 
+                          required
                           name='isAnswerTrue'
                           type='radio'
-                          id='yes'
+                          id='answer'
                           value='yes'
                            onChange={this.handleInputChange}
                       /> 
                       <label htmlFor='yes'>Yes</label> 
                       <input 
+                      required
                           name='isAnswerTrue'
                           type='radio'
-                          id='no'
+                          id='answer'
                           value='no' 
                           onChange={this.handleInputChange}
                       /> 
@@ -88,7 +99,7 @@ class Form extends React.Component {
                 </div>
                 <label>
                       Comment:
-                      <textarea name='comment' value={this.state.comment} onChange={this.handleInputChange}/>
+                      <textarea name='comment' value={this.state.comment} onChange={this.handleInputChange} pattern={alphaNumRegex}/>
                 </label>   
                 <input type='submit' value='Submit' />   
             </form>  
