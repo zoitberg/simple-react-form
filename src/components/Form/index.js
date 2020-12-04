@@ -39,11 +39,10 @@ class Form extends React.Component {
     render() {
 
         const alphaRegex = '[A-Za-z]+';
-        const alphaNumRegex = '[A-Za-z0-9_]*';
 
         return (
            <form className='Flex-container' onSubmit={this.handleSubmit}>
-               <label>
+               <label htmlFor='firstName'>
                    First Name: 
                     <input
                       required
@@ -55,7 +54,7 @@ class Form extends React.Component {
                        />   
                </label>
                <br />
-               <label>
+               <label htmlFor='lastName'>
                    Last Name:
                       <input 
                         required
@@ -66,7 +65,7 @@ class Form extends React.Component {
                         pattern={alphaRegex}
                       />
                </label>
-               <label>
+               <label htmlFor='email'>
                    Email:
                       <input
                         required
@@ -83,7 +82,7 @@ class Form extends React.Component {
                           name='isAnswerTrue'
                           type='radio'
                           id='answer'
-                          value='yes'
+                          value={true}
                            onChange={this.handleInputChange}
                       /> 
                       <label htmlFor='yes'>Yes</label> 
@@ -92,14 +91,14 @@ class Form extends React.Component {
                           name='isAnswerTrue'
                           type='radio'
                           id='answer'
-                          value='no' 
+                          value={false} 
                           onChange={this.handleInputChange}
                       /> 
                       <label htmlFor='no'>No</label> 
                 </div>
-                <label>
+                <label htmlFor='comment'>
                       Comment:
-                      <textarea name='comment' value={this.state.comment} onChange={this.handleInputChange} pattern={alphaNumRegex}/>
+                      <textarea name='comment' value={this.state.comment} onChange={this.handleInputChange}/>
                 </label>   
                 <input type='submit' value='Submit' />   
             </form>  
