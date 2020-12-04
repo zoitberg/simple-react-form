@@ -16,20 +16,27 @@ class Form extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     handleInputChange(event) {
         const target = event.target;
         const name = target.name;
         const value = target.value;
-
-        this.setState({
-            [name]: value
-        });
+        
+        if(name === 'comment' && value.includes('_')) {
+            target.value = null;
+            console.log('You cannot use underscore in textarea field')
+        } else {
+            this.setState({
+                [name]: value
+            });
+        }
     }
 
     handleSubmit(event) {
       
         event.preventDefault();
         console.log('Form Data:\n');
+
         for (const [key, value] of Object.entries(this.state)) {
             console.log(` ${key}: ${value}`);
           }
